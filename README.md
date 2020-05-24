@@ -4,17 +4,8 @@
 
 
 ## 基础准备
-###scala mysql连接池
-`
-/**
- * 对象池化工厂工具类
- *
- * @param jdbcUrl
- * @param jdbcUser
- * @param jdbcPassword
- * @param client
- */
-class PooledMySqlClientFactory(jdbcUrl: String, jdbcUser: String, jdbcPassword: String, client: Option[Connection] = None)
+### scala mysql连接池
+`class PooledMySqlClientFactory(jdbcUrl: String, jdbcUser: String, jdbcPassword: String, client: Option[Connection] = None)
   extends BasePooledObjectFactory[MySqlProxy] with Serializable {
 
   // 用于池来创建对象
@@ -29,8 +20,7 @@ class PooledMySqlClientFactory(jdbcUrl: String, jdbcUser: String, jdbcPassword: 
     super.destroyObject(p)
   }
 
-}
-`
+}`
 ### 日志切割
 、、、
 #按包输出到指定文件：Logfactory.getloger(clazz)
