@@ -5,7 +5,8 @@
 
 ## 基础准备
 ### scala mysql连接池
-    class PooledMySqlClientFactory(jdbcUrl: String, jdbcUser: String, jdbcPassword: String, client: Option[Connection] = None)
+ ```scala
+   class PooledMySqlClientFactory(jdbcUrl: String, jdbcUser: String, jdbcPassword: String, client: Option[Connection] = None)
       extends BasePooledObjectFactory[MySqlProxy] with Serializable {
     
       // 用于池来创建对象
@@ -21,21 +22,30 @@
       }
     
     }
+```
 ### 日志切割
-    #按包输出到指定文件：Logfactory.getloger(clazz)
     log4j.logger.com.z.biz.analyse.analog= ERROR, analyselog, stdout
-    log4j.additivity.com.z.biz.analyse.analog = false
-    log4j.appender.analyselog=org.apache.log4j.FileAppender
-    log4j.appender.analyselog.File=G://data//logs/biz-analyse.log
-    log4j.appender.analyselog.layout=org.apache.log4j.PatternLayout
+    ..........
     log4j.appender.analyselog.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%r] [%t] %l: %m %x %n
     
 # 用户聚合分布
 ### 自定义累加器
 
-    class SessionAggrStatAccumulator extends AccumulatorV2[String, mutable.HashMap[String, Int]] {
-...
+ ```scala
+   class SessionAggrStatAccumulator extends AccumulatorV2[String, mutable.HashMap[String, Int]] {
+......
+ override def merge(other: AccumulatorV2[String, mutable.HashMap[String, Int]]): Unit = other match {
+    case acc: SessionAggrStatAccumulator => {
+      acc.synchronized {
+        (aggrStatMap /: acc.value) {
+          case (map, (k, v)) => map += (k -> (v + map.getOrElse(k, 0)))
+        }
+      }
     }
+  }
+.......
+    }
+```
 # 用户随机抽样
 这个按照时间比例是什么意思呢？随机抽取本身是很简单的，但是按照时间比例，就很复杂了。
 ```scala
