@@ -1,9 +1,9 @@
 # Spark大数据广告营销分析
-##项目目标
+## 项目目标
 对电商网站的各种用户行为（访问行为、购物行为、广告点击行为等）进行复杂的分析。用统计分析出来的数据，辅助公司中的PM（产品经理）、数据分析师以及管理人员分析现有产品的情况，并根据用户行为分析结果持续改进产品的设计，以及调整公司的战略和业务。最终达到用大数据技术来帮助提升公司的业绩、营业额以及市场占有率的目标。
 
 
-##基础准备
+## 基础准备
 ###scala mysql连接池
 '''
 /**
@@ -31,7 +31,7 @@ class PooledMySqlClientFactory(jdbcUrl: String, jdbcUser: String, jdbcPassword: 
 
 }
 '''
-###日志切割
+### 日志切割
 '''
 #按包输出到指定文件：Logfactory.getloger(clazz)
 log4j.logger.com.z.biz.analyse.analog= ERROR, analyselog, stdout
