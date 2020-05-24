@@ -5,7 +5,7 @@
 
 ## 基础准备
 ###scala mysql连接池
-'''
+、、、
 /**
  * 对象池化工厂工具类
  *
@@ -30,9 +30,9 @@ class PooledMySqlClientFactory(jdbcUrl: String, jdbcUser: String, jdbcPassword: 
   }
 
 }
-'''
+、、、
 ### 日志切割
-'''
+、、、
 #按包输出到指定文件：Logfactory.getloger(clazz)
 log4j.logger.com.z.biz.analyse.analog= ERROR, analyselog, stdout
 log4j.additivity.com.z.biz.analyse.analog = false
@@ -47,4 +47,4 @@ log4j.appender.SV=org.apache.log4j.FileAppender
 log4j.appender.SV.File=G://data//logs/session-stat.log
 log4j.appender.SV.layout=org.apache.log4j.PatternLayout
 log4j.appender.SV.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%r] [%t] %l: %m %x %n
-'''
+、、、
